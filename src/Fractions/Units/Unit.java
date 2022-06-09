@@ -8,6 +8,7 @@ public abstract class Unit {
     private int positionX;
     private int positionY;
     private boolean isPoisoned;
+    private boolean isFromNorth;
 
     public Unit(int hp, int dmg, int speed) {
         this.hp = hp;
@@ -22,6 +23,14 @@ public abstract class Unit {
 
     public void poisonDMG() {
         if(isPoisoned) hp -= Settings.poisonDMG;
+    }
+
+    public boolean isFromNorth() {
+        return isFromNorth;
+    }
+
+    public void setFromNorth(boolean fromNorth) {
+        isFromNorth = fromNorth;
     }
 
     public int getHp() {

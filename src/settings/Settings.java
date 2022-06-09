@@ -1,5 +1,6 @@
 package settings;
 
+import Battle_Map.BattleMap;
 import Fractions.Units.MeleeUnit;
 import Fractions.Units.RangeUnit;
 import Fractions.Units.Skills.ElvenSkill;
@@ -12,6 +13,7 @@ import java.net.PortUnreachableException;
 public class Settings {
     // game settings
     public static int mapSize = 100;
+    public static BattleMap battleMap = new BattleMap(mapSize);
 
     // common stats (also Humans)
     public static int HP = 20;
@@ -53,5 +55,12 @@ public class Settings {
     public static RangeUnit Archer = new RangeUnit((int) (HP * 0.8), DMG, rangeSpeed + 1, range + 1);
     // Teleporter (special)
     public static SpecialUnit Teleporter = new SpecialUnit(HP * 10, 0, 0, new ElvenSkill());
+
+    //              Undead settings
+
+    // Zombie (melee)
+    public static MeleeUnit Zombie = new MeleeUnit(HP * 2, DMG / 4, meleeSpeed / 2);
+    // SkeletonArcher (range)
+    public static RangeUnit SkeletonArcher = new RangeUnit(HP /2 , DMG, meleeSpeed, range);
 
 }
