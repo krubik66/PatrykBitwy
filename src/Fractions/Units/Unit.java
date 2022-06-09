@@ -6,4 +6,6 @@ public abstract class Unit {
     private int speed;
 
 
+    int positionX;
+    int positionY;
 }
