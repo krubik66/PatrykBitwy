@@ -83,4 +83,8 @@ public class BattleMap {
     public void move(Unit unit, int x, int y) {
 
     }
+
+    public boolean remove(Unit unit) {
+        return false;
+    }
 }
