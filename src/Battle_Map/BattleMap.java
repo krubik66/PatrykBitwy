@@ -2,6 +2,8 @@ package Battle_Map;
 
 import Fractions.Units.Unit;
 
+import java.util.Random;
+
 public class BattleMap {
 
     Unit[][] map;
@@ -25,10 +27,12 @@ public class BattleMap {
             if (units.length + occupiedPlacesSide1 > maxCapacity) return false;
             int n = occupiedPlacesSide1/size;
             for (Unit u : units) {
+                Random random = new Random();
                 while (true) {
-
+                    random.nextInt(size);
                 }
             }
         }
+        return false;
     }
 }
