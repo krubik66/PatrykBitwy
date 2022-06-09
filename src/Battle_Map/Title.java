@@ -6,6 +6,8 @@ public class Title {
     Terrain terrain;
     Unit unit;
 
+    int deadBodies = 0;
+
     public Terrain getTerrain() {
         return terrain;
     }
@@ -20,5 +22,9 @@ public class Title {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    public void newBody() {
+        deadBodies++;
     }
 }
