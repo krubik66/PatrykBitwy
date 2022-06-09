@@ -71,4 +71,16 @@ public class BattleMap {
             }
         }
     }
+
+    public void printMap() {
+        for (int i = 0; i < mapTerrain.length; i++) {
+            for (int j = 0; j < mapTerrain.length; j++) {
+
+            }
+        }
+    }
+
+    public void move(Unit unit, int x, int y) {
+
+    }
 }
