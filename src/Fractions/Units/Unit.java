@@ -9,12 +9,10 @@ public abstract class Unit {
     private int positionY;
     private boolean isPoisoned;
 
-    public Unit(int hp, int dmg, int speed, int positionX, int positionY) {
+    public Unit(int hp, int dmg, int speed) {
         this.hp = hp;
         this.dmg = dmg;
         this.speed = speed;
-        this.positionX = positionX;
-        this.positionY = positionY;
         this.isPoisoned = false;
     }
 
