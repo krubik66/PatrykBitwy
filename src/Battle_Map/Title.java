@@ -3,10 +3,10 @@ package Battle_Map;
 import Fractions.Units.Unit;
 
 public class Title {
-    Terrain terrain;
-    Unit unit;
+    private Terrain terrain;
+    private Unit unit;
 
-    int deadBodies = 0;
+    private int deadBodies = 0;
 
     public Terrain getTerrain() {
         return terrain;
