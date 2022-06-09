@@ -2,9 +2,9 @@ package Fractions.Units.Skills;
 
 import Fractions.Units.Unit;
 
-public class OrcSkill implements Skill {
+public class UndeadSkill implements Skill{
     @Override
     public void skill(Unit unit) {
-        unit.poison();
+
     }
 }
