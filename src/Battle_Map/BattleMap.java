@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class BattleMap {
 
-    Unit[][] unitPosition;
+    Title[][] map;
 
-    Terrain[][] mapTerrain;
+
     int occupiedPlacesSide1;
     int occupiedPlacesSide2;
 
@@ -16,8 +16,7 @@ public class BattleMap {
 
     public BattleMap(int size) {
 
-        this.unitPosition = new Unit[size][size];
-        this.mapTerrain = new Terrain[size][size];
+        map = new Title[size][size];
 
         occupiedPlacesSide1 = 0;
         occupiedPlacesSide2 = 0;
@@ -26,7 +25,7 @@ public class BattleMap {
     }
 
     public boolean generateUnits(Unit[] units, boolean onOppositeSide) {
-        int size = unitPosition.length;
+        int size = map.length;
         if (!onOppositeSide) {
             if (units.length + occupiedPlacesSide1 > maxCapacity) return false;
             for (Unit u : units) {
@@ -34,10 +33,10 @@ public class BattleMap {
                 Random random = new Random();
                 while (true) {
                     int i = random.nextInt(size);
-                    if (unitPosition[n][i] == null) {
+                    if (map[n][i].getUnit() == null) {
                         u.setPositionX(i);
                         u.setPositionY(n);
-                        unitPosition[n][i] = u;
+                        map[n][i].setUnit(u);
                         occupiedPlacesSide1++;
                         break;
                     }
@@ -50,11 +49,11 @@ public class BattleMap {
                 Random random = new Random();
                 while (true) {
                     int i = random.nextInt(size);
-                    if (unitPosition[n][i] == null) {
+                    if (map[n][i].getUnit() == null) {
                         u.setPositionX(i);
                         u.setPositionY(n);
-                        unitPosition[n][i] = u;
-                        occupiedPlacesSide2++;
+                        map[n][i].setUnit(u);
+                        occupiedPlacesSide1++;
                         break;
                     }
                 }
@@ -65,26 +64,74 @@ public class BattleMap {
 
     public void generateTerrain(int biome) {
         RandomTerrain random = new RandomTerrain();
-        for (Terrain[] row: mapTerrain) {
-            for (Terrain place: row) {
-                place = random.nextTerrain();
+        for (Title[] row: map) {
+            for (Title title : row) {
+                title.setTerrain(random.nextTerrain());
             }
         }
     }
 
     public void printMap() {
-        for (int i = 0; i < mapTerrain.length; i++) {
-            for (int j = 0; j < mapTerrain.length; j++) {
+        StringBuilder[] stringBuilders = new StringBuilder[map.length*3];
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map.length; j++) {
+                String[] toAppend = new String[3];
+                if (j%2==0 && i%2 == 0) {
+                    if (j==0) {
+                        stringBuilders[i*3].append("  ");
+                        stringBuilders[i*3+1].append(' ');
+                    }
+                    toAppend = printUnit(map[i][j].getUnit());
+                } else if (j%2==1 && i%2 == 0) {
+                    if (i==0) {
+                        toAppend = printTop();
+                    } else toAppend = printTerrain(map[i][j].getTerrain());
 
+                } else if (j%2==0 && i%2 == 1) {
+                    if (j==0) {
+                        stringBuilders[i*3+2].append("  ");
+                        stringBuilders[i*3+1].append(' ');
+                    }
+                    toAppend = printTerrain(map[i][j].getTerrain());
+                } else if (j%2==1 && i%2 == 1) {
+                    if (i == map.length) toAppend = printBottom();
+                    else toAppend = printUnit(map[i][j].getUnit());
+                }
+                stringBuilders[i*3].append(toAppend[0]);
+                stringBuilders[i*3+1].append(toAppend[1]);
+                stringBuilders[i*3+2].append(toAppend[2]);
             }
         }
     }
 
     public void move(Unit unit, int x, int y) {
-
+        map[unit.getPositionY()][unit.getPositionX()].setUnit(null);
+        map[y][x].setUnit(unit);
+        unit.setPositionY(y);
+        unit.setPositionX(x);
     }
 
     public boolean remove(Unit unit) {
         return false;
+    }
+
+    public String[] printTop() {
+        String s = "\\";
+        return new String[]{s+"            ",s+"          ",s+"        "};
+    }
+
+    public String[] printBottom() {
+        String s = "////";
+        return new String[]{s+"        ",s+"          ",s+"            "};
+    }
+
+    public String[] printUnit(Unit unit) {
+        String s = "////";
+
+        return new String[]{s+"        ",s+"          ",s+"            "};
+    }
+
+    public String[] printTerrain(Terrain terrain) {
+        return null;
     }
 }
