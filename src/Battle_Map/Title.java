@@ -12,6 +12,14 @@ public class Title {
         return terrain;
     }
 
+    public int getDeadBodies() {
+        return deadBodies;
+    }
+
+    public void setDeadBodies(int deadBodies) {
+        this.deadBodies = deadBodies;
+    }
+
     public void setTerrain(Terrain terrain) {
         this.terrain = terrain;
     }

@@ -1,14 +1,20 @@
 package Fractions;
 
-import java.util.ArrayList;
+import Fractions.Units.MeleeUnit;
+import Fractions.Units.RangeUnit;
+import Fractions.Units.SpecialUnit;
+import Fractions.Units.Unit;
 
-public abstract class Fraction {
-    private ArrayList unitList;
-    public Fraction() {
-        this.unitList = new ArrayList();
+public class Fraction {
+
+    public static MeleeUnit addMelee() {
+        return null;
     }
-    public abstract void addMelee();
-    public abstract void addRange();
-    public abstract void addSpecial();
-    public abstract int unitsLeft();
+
+    public static RangeUnit addRange() {
+        return null;
+    }
+    public static SpecialUnit addSpecial() {
+        return null;
+    }
 }
