@@ -1,4 +1,5 @@
 package Fractions.Units;
+import settings.Settings;
 
 public abstract class Unit {
     private int hp;
@@ -6,6 +7,7 @@ public abstract class Unit {
     private int speed;
     private int positionX;
     private int positionY;
+    private boolean isPoisoned;
 
     public Unit(int hp, int dmg, int speed, int positionX, int positionY) {
         this.hp = hp;
@@ -13,6 +15,15 @@ public abstract class Unit {
         this.speed = speed;
         this.positionX = positionX;
         this.positionY = positionY;
+        this.isPoisoned = false;
+    }
+
+    public void poison() {
+        this.isPoisoned = true;
+    }
+
+    public void poisonDMG() {
+        if(isPoisoned) hp -= Settings.poisonDMG;
     }
 
     public int getHp() {
