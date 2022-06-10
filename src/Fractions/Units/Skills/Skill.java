@@ -1,7 +1,8 @@
 package Fractions.Units.Skills;
 
+import Fractions.Fraction;
 import Fractions.Units.Unit;
 
 public interface Skill {
-    public abstract void skill(Unit unit);
+    public abstract boolean skill(Unit caster);
 }

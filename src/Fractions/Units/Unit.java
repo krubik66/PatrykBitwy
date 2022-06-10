@@ -4,20 +4,22 @@ import settings.Settings;
 
 public abstract class Unit {
     private int hp;
+    private int maxHP;
     private int dmg;
     private int speed;
+    private int range;
     private int positionX;
     private int positionY;
     private boolean isPoisoned;
     private Fraction allegience;
-    private boolean isFromNorth;
 
-    public Unit(int hp, int dmg, int speed, Fraction allegience) {
+    public Unit(int hp, int dmg, int speed) {
         this.hp = hp;
+        this.maxHP = hp;
         this.dmg = dmg;
         this.speed = speed;
+        this.range = -1;
         this.isPoisoned = false;
-        this.allegience = allegience;
     }
 
     public void poison() {
@@ -28,16 +30,28 @@ public abstract class Unit {
         if(isPoisoned) hp -= Settings.poisonDMG;
     }
 
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
     public Fraction getAllegience() {
         return allegience;
     }
 
-    public boolean isFromNorth() {
-        return isFromNorth;
+    public void setAllegience(Fraction allegience) {
+        this.allegience = allegience;
     }
 
-    public void setFromNorth(boolean fromNorth) {
-        isFromNorth = fromNorth;
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
     }
 
     public int getHp() {

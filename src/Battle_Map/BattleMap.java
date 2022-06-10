@@ -36,7 +36,6 @@ public class BattleMap {
                     if (map[n][i].getUnit() == null) {
                         u.setPositionX(i);
                         u.setPositionY(n);
-                        u.setFromNorth(true);
                         map[n][i].setUnit(u);
                         occupiedPlacesSide1++;
                         break;
@@ -53,7 +52,6 @@ public class BattleMap {
                     if (map[n][i].getUnit() == null) {
                         u.setPositionX(i);
                         u.setPositionY(n);
-                        u.setFromNorth(false);
                         map[n][i].setUnit(u);
                         occupiedPlacesSide1++;
                         break;
@@ -107,10 +105,12 @@ public class BattleMap {
     }
 
     public void move(Unit unit, int x, int y) {
-        map[unit.getPositionY()][unit.getPositionX()].setUnit(null);
-        map[y][x].setUnit(unit);
-        unit.setPositionY(y);
-        unit.setPositionX(x);
+        if(map[y][x].getUnit() == null) {
+            map[unit.getPositionY()][unit.getPositionX()].setUnit(null);
+            map[y][x].setUnit(unit);
+            unit.setPositionY(y);
+            unit.setPositionX(x);
+        }
     }
 
     public boolean remove(Unit unit) {
@@ -136,5 +136,13 @@ public class BattleMap {
 
     public String[] printTerrain(Terrain terrain) {
         return null;
+    }
+
+    public Unit getUnit(int x, int y) {
+        return map[y][x].getUnit();
+    }
+    public void unitDied(int x, int y) {
+        map[y][x].setUnit(null);
+        map[y][x].newBody();
     }
 }

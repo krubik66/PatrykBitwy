@@ -12,7 +12,9 @@ import Fractions.Units.SpecialUnit;
 public class Settings {
     // game settings
     public static int mapSize = 100;
-    public static BattleMap battleMap = new BattleMap(mapSize);
+
+
+    // ------------------------------------------------
 
     // common stats (also Humans)
     public static int HP = 20;
@@ -21,6 +23,7 @@ public class Settings {
     public static int range = 10;
     public static int DMG = 4;
 
+    // ------------------------------------------------
 
     //              Human Settings
 
@@ -31,7 +34,7 @@ public class Settings {
     public static RangeUnit Marksman() { return new RangeUnit(HP, DMG, rangeSpeed, range);}
 
     // Priest (special)
-    public static SpecialUnit Priest() { return new SpecialUnit(HP * 5, DMG * 4, meleeSpeed, new HumanSkill());}
+    public static SpecialUnit Priest() { return new SpecialUnit(HP * 5, DMG * 4, meleeSpeed, range, new HumanSkill(), 3);}
 
     public static int HealAmount = HP / 2;
 
@@ -46,7 +49,7 @@ public class Settings {
     public static RangeUnit Hunter() { return new RangeUnit(HP, DMG, rangeSpeed + 1, range);}
 
     // Shaman (special)
-    public static SpecialUnit Shaman() { return new SpecialUnit(HP * 5, DMG * 4, rangeSpeed, new OrcSkill());}
+    public static SpecialUnit Shaman() { return new SpecialUnit(HP * 5, DMG * 4, rangeSpeed, range * 2, new OrcSkill(), 1);}
 
     public static int poisonDMG = 1;
 
@@ -61,18 +64,18 @@ public class Settings {
     public static RangeUnit Bloodmage() { return new RangeUnit((int) (HP * 0.8), DMG, rangeSpeed + 1, range + 1);}
 
     // Teleporter (special)
-    public static SpecialUnit Portal() { return new SpecialUnit(HP * 10, 0, 0, new ElvenSkill());}
+    public static SpecialUnit Portal() { return new SpecialUnit(HP * 10, 0, 0, range * 10, new ElvenSkill(), 4);}
 
     //              Undead settings
 
     // Zombie (melee)
-    public static MeleeUnit Zombie = new MeleeUnit(HP * 2, DMG / 4, meleeSpeed / 2);
+    public static MeleeUnit Zombie() { return new MeleeUnit(HP * 2, DMG / 4, meleeSpeed / 2);}
 
     // SkeletonArcher (range)
-    public static RangeUnit SkeletonArcher = new RangeUnit(HP /2 , DMG, meleeSpeed, range);
+    public static RangeUnit SkeletonArcher() { return new RangeUnit(HP /2 , DMG, meleeSpeed, range);}
 
     // Vampire (special)
-    public static SpecialUnit Vampire = new SpecialUnit(HP * 10, DMG * 2, meleeSpeed + 5, new UndeadSkill());
+    public static SpecialUnit Vampire() { return new SpecialUnit(HP * 10, DMG * 2, meleeSpeed + 5, -1, new UndeadSkill(), 0);}
 
     // passive skill
     public static int bodiesRequiredToResurrect = 3;

@@ -13,16 +13,25 @@ public class Elves extends Fraction {
 
     @Override
     public MeleeUnit addMelee() {
-        return Settings.Bladedancer;
+        MeleeUnit bladedancer = Settings.Bladedancer();
+        bladedancer.setAllegience(this);
+        unitList.add(bladedancer);
+        return bladedancer;
     }
 
     @Override
     public RangeUnit addRange() {
-        return Settings.Bloodmage;
+        RangeUnit bloodmage = Settings.Bloodmage();
+        bloodmage.setAllegience(this);
+        unitList.add(bloodmage);
+        return bloodmage;
     }
 
     @Override
     public SpecialUnit addSpecial() {
-        return Settings.Portal;
+        SpecialUnit portal = Settings.Portal();
+        portal.setAllegience(this);
+        unitList.add(portal);
+        return portal;
     }
 }
