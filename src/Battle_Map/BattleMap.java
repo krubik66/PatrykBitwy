@@ -139,4 +139,8 @@ public class BattleMap {
     public Unit getUnit(int x, int y) {
         return map[y][x].getUnit();
     }
+    public void unitDied(int x, int y) {
+        map[y][x].setUnit(null);
+        map[y][x].newBody();
+    }
 }
