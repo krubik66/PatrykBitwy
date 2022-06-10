@@ -34,7 +34,7 @@ public class Settings {
     public static RangeUnit Marksman() { return new RangeUnit(HP, DMG, rangeSpeed, range);}
 
     // Priest (special)
-    public static SpecialUnit Priest() { return new SpecialUnit(HP * 5, DMG * 4, meleeSpeed, new HumanSkill());}
+    public static SpecialUnit Priest() { return new SpecialUnit(HP * 5, DMG * 4, meleeSpeed, range, new HumanSkill());}
 
     public static int HealAmount = HP / 2;
 
@@ -49,7 +49,7 @@ public class Settings {
     public static RangeUnit Hunter() { return new RangeUnit(HP, DMG, rangeSpeed + 1, range);}
 
     // Shaman (special)
-    public static SpecialUnit Shaman() { return new SpecialUnit(HP * 5, DMG * 4, rangeSpeed, new OrcSkill());}
+    public static SpecialUnit Shaman() { return new SpecialUnit(HP * 5, DMG * 4, rangeSpeed, range * 2, new OrcSkill());}
 
     public static int poisonDMG = 1;
 
@@ -64,7 +64,7 @@ public class Settings {
     public static RangeUnit Bloodmage() { return new RangeUnit((int) (HP * 0.8), DMG, rangeSpeed + 1, range + 1);}
 
     // Teleporter (special)
-    public static SpecialUnit Portal() { return new SpecialUnit(HP * 10, 0, 0, new ElvenSkill());}
+    public static SpecialUnit Portal() { return new SpecialUnit(HP * 10, 0, 0, range, new ElvenSkill());}
 
     //              Undead settings
 
@@ -75,7 +75,7 @@ public class Settings {
     public static RangeUnit SkeletonArcher() { return new RangeUnit(HP /2 , DMG, meleeSpeed, range);}
 
     // Vampire (special)
-    public static SpecialUnit Vampire() { return new SpecialUnit(HP * 10, DMG * 2, meleeSpeed + 5, new UndeadSkill());}
+    public static SpecialUnit Vampire() { return new SpecialUnit(HP * 10, DMG * 2, meleeSpeed + 5, -1, new UndeadSkill());}
 
     // passive skill
     public static int bodiesRequiredToResurrect = 3;

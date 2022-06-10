@@ -24,4 +24,7 @@ public abstract class Fraction {
     public ArrayList getUnitList() {
         return unitList;
     }
+    public void unitDied(Unit unit) {
+        unitList.remove(unit);
+    }
 }

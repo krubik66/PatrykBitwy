@@ -11,14 +11,25 @@ public class Undead extends Fraction {
         super(isFromNorth);
     }
 
-    public MeleeUnit addMelee() { return Settings.Zombie(); }
+    public MeleeUnit addMelee() {
+        MeleeUnit zombie = Settings.Zombie();
+        zombie.setAllegience(this);
+        unitList.add(zombie);
+        return zombie;
+    }
 
     public RangeUnit addRange() {
-        return Settings.SkeletonArcher();
+        RangeUnit skeletonArcher = Settings.SkeletonArcher();
+        skeletonArcher.setAllegience(this);
+        unitList.add(skeletonArcher);
+        return skeletonArcher;
     }
 
     public SpecialUnit addSpecial() {
-        return Settings.Vampire();
+        SpecialUnit vampire = Settings.Vampire();
+        vampire.setAllegience(this);
+        unitList.add(vampire);
+        return vampire;
     }
 
     public void passive(Title title) {
