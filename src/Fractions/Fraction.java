@@ -5,16 +5,15 @@ import Fractions.Units.RangeUnit;
 import Fractions.Units.SpecialUnit;
 import Fractions.Units.Unit;
 
-public class Fraction {
-
-    public static MeleeUnit addMelee() {
-        return null;
+public abstract class Fraction {
+    private boolean isFromNorth;
+    public Fraction(boolean isFromNorth) {
+        this.isFromNorth = isFromNorth;
     }
 
-    public static RangeUnit addRange() {
-        return null;
-    }
-    public static SpecialUnit addSpecial() {
-        return null;
-    }
+    public abstract MeleeUnit addMelee();
+
+    public abstract RangeUnit addRange();
+
+    public abstract SpecialUnit addSpecial();
 }

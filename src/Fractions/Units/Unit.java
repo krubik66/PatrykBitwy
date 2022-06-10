@@ -1,4 +1,5 @@
 package Fractions.Units;
+import Fractions.Fraction;
 import settings.Settings;
 
 public abstract class Unit {
@@ -8,13 +9,15 @@ public abstract class Unit {
     private int positionX;
     private int positionY;
     private boolean isPoisoned;
+    private Fraction allegience;
     private boolean isFromNorth;
 
-    public Unit(int hp, int dmg, int speed) {
+    public Unit(int hp, int dmg, int speed, Fraction allegience) {
         this.hp = hp;
         this.dmg = dmg;
         this.speed = speed;
         this.isPoisoned = false;
+        this.allegience = allegience;
     }
 
     public void poison() {
@@ -23,6 +26,10 @@ public abstract class Unit {
 
     public void poisonDMG() {
         if(isPoisoned) hp -= Settings.poisonDMG;
+    }
+
+    public Fraction getAllegience() {
+        return allegience;
     }
 
     public boolean isFromNorth() {

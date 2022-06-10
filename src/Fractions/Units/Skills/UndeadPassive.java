@@ -8,7 +8,7 @@ public class UndeadPassive {
     public void passive(Title title) {
         if(title.getDeadBodies() >= Settings.bodiesRequiredToResurrect && title.getUnit() == null) {
             title.setDeadBodies(0);
-            title.setUnit(Undead.addMelee());
+            title.setUnit(Settings.Zombie);
         }
     }
 }
