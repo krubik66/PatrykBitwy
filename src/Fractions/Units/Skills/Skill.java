@@ -4,5 +4,5 @@ import Fractions.Fraction;
 import Fractions.Units.Unit;
 
 public interface Skill {
-    public abstract void skill(Unit unit, Fraction allegience);
+    public abstract boolean skill(Unit caster);
 }

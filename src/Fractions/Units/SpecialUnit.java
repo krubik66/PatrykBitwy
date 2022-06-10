@@ -10,6 +10,6 @@ public class SpecialUnit extends Unit {
         this.skill = skill;
     }
     public void activateSkill(Unit unit) {
-        skill.skill(unit, getAllegience());
+        skill.skill(unit);
     }
 }

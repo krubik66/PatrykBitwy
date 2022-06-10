@@ -4,6 +4,7 @@ import settings.Settings;
 
 public abstract class Unit {
     private int hp;
+    private int maxHP;
     private int dmg;
     private int speed;
     private int range;
@@ -14,6 +15,7 @@ public abstract class Unit {
 
     public Unit(int hp, int dmg, int speed) {
         this.hp = hp;
+        this.maxHP = hp;
         this.dmg = dmg;
         this.speed = speed;
         this.range = -1;
@@ -26,6 +28,14 @@ public abstract class Unit {
 
     public void poisonDMG() {
         if(isPoisoned) hp -= Settings.poisonDMG;
+    }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
     }
 
     public Fraction getAllegience() {

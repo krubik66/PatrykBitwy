@@ -135,4 +135,8 @@ public class BattleMap {
     public String[] printTerrain(Terrain terrain) {
         return null;
     }
+
+    public Unit getUnit(int x, int y) {
+        return map[y][x].getUnit();
+    }
 }
