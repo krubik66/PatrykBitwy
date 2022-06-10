@@ -36,7 +36,6 @@ public class BattleMap {
                     if (map[n][i].getUnit() == null) {
                         u.setPositionX(i);
                         u.setPositionY(n);
-                        u.setFromNorth(true);
                         map[n][i].setUnit(u);
                         occupiedPlacesSide1++;
                         break;
@@ -53,7 +52,6 @@ public class BattleMap {
                     if (map[n][i].getUnit() == null) {
                         u.setPositionX(i);
                         u.setPositionY(n);
-                        u.setFromNorth(false);
                         map[n][i].setUnit(u);
                         occupiedPlacesSide1++;
                         break;

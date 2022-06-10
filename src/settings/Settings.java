@@ -12,7 +12,9 @@ import Fractions.Units.SpecialUnit;
 public class Settings {
     // game settings
     public static int mapSize = 100;
-    public static BattleMap battleMap = new BattleMap(mapSize);
+
+
+    // ------------------------------------------------
 
     // common stats (also Humans)
     public static int HP = 20;
@@ -21,6 +23,7 @@ public class Settings {
     public static int range = 10;
     public static int DMG = 4;
 
+    // ------------------------------------------------
 
     //              Human Settings
 
@@ -66,13 +69,13 @@ public class Settings {
     //              Undead settings
 
     // Zombie (melee)
-    public static MeleeUnit Zombie = new MeleeUnit(HP * 2, DMG / 4, meleeSpeed / 2);
+    public static MeleeUnit Zombie() { return new MeleeUnit(HP * 2, DMG / 4, meleeSpeed / 2);}
 
     // SkeletonArcher (range)
-    public static RangeUnit SkeletonArcher = new RangeUnit(HP /2 , DMG, meleeSpeed, range);
+    public static RangeUnit SkeletonArcher() { return new RangeUnit(HP /2 , DMG, meleeSpeed, range);}
 
     // Vampire (special)
-    public static SpecialUnit Vampire = new SpecialUnit(HP * 10, DMG * 2, meleeSpeed + 5, new UndeadSkill());
+    public static SpecialUnit Vampire() { return new SpecialUnit(HP * 10, DMG * 2, meleeSpeed + 5, new UndeadSkill());}
 
     // passive skill
     public static int bodiesRequiredToResurrect = 3;
