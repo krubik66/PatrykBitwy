@@ -17,14 +17,21 @@ public class UnitMovement {
         while(staminaLeft > 0) {
             staminaLeft--;
             if(Math.abs(x - closestTarget.getPositionX()) > Math.abs(y - closestTarget.getPositionY())) {
-                if(x - closestTarget.getPositionX() > 0) x--;
-                else x++;
+                if(x - closestTarget.getPositionX() > 1) x--;
+                else {
+                    if(Math.abs(x - closestTarget.getPositionX()) == 1) staminaLeft = 0;
+                    else x++;
+                }
             }
             else {
                 if(y - closestTarget.getPositionY() > 0) y--;
-                else y++;
+                else {
+                    if(Math.abs(y - closestTarget.getPositionY()) == 1) staminaLeft = 0;
+                    else y++;
+                }
             }
         }
         CurrentGameData.battleMap.move(currentlyMoving, x, y);
+        currentlyMoving.setRange(originalRange);
     }
 }

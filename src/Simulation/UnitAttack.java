@@ -38,7 +38,7 @@ public class UnitAttack {
         return targets;
     }
 
-    public static void attack(Unit attacker) {
+    public static boolean attack(Unit attacker) {
         Unit target = findTarget(attacker, false);
         if(target != null) {
             target.setHp(target.getHp() - attacker.getDmg());
@@ -48,6 +48,8 @@ public class UnitAttack {
                 int y = target.getPositionY();
                 CurrentGameData.battleMap.unitDied(x, y);
             }
+            return true;
         }
+        return false;
     }
 }

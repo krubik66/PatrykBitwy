@@ -4,6 +4,8 @@ import Fractions.Elves;
 import Fractions.Humans;
 import Fractions.Orcs;
 import Fractions.Undead;
+import Fractions.Units.SpecialUnit;
+import Fractions.Units.Unit;
 import settings.CurrentGameData;
 import settings.Settings;
 
@@ -39,6 +41,11 @@ public class Symulation {
         }
     }
     public static void turn() {
-
+        for(Object unit : CurrentGameData.northFraction.getUnitList()) {
+            boolean actionUsed = false;
+            if(unit.getClass().equals(SpecialUnit.class)) actionUsed = UnitSkillUsage.attemptUsingASkill((SpecialUnit) unit);
+            else actionUsed = UnitAttack.attack((Unit) unit);
+            if(!actionUsed) UnitMovement.movement((Unit) unit);
+        }
     }
 }

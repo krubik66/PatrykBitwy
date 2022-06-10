@@ -105,10 +105,12 @@ public class BattleMap {
     }
 
     public void move(Unit unit, int x, int y) {
-        map[unit.getPositionY()][unit.getPositionX()].setUnit(null);
-        map[y][x].setUnit(unit);
-        unit.setPositionY(y);
-        unit.setPositionX(x);
+        if(map[y][x].getUnit() == null) {
+            map[unit.getPositionY()][unit.getPositionX()].setUnit(null);
+            map[y][x].setUnit(unit);
+            unit.setPositionY(y);
+            unit.setPositionX(x);
+        }
     }
 
     public boolean remove(Unit unit) {
