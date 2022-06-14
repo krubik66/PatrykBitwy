@@ -10,8 +10,8 @@ import settings.CurrentGameData;
 import settings.Settings;
 
 public class Symulation {
-    public Symulation(int first, int second) {
-        switch (first) {
+    public Symulation(int north, int south) {
+        switch (north) {
             case 1:
                 CurrentGameData.northFraction = new Humans(true);
                 break;
@@ -25,7 +25,7 @@ public class Symulation {
                 CurrentGameData.northFraction = new Orcs(true);
                 break;
         }
-        switch (second) {
+        switch (south) {
             case 1:
                 CurrentGameData.northFraction = new Humans(false);
                 break;
@@ -42,6 +42,13 @@ public class Symulation {
     }
     public static void turn() {
         for(Object unit : CurrentGameData.northFraction.getUnitList()) {
+            boolean actionUsed = false;
+            if(unit.getClass().equals(SpecialUnit.class)) actionUsed = UnitSkillUsage.attemptUsingASkill((SpecialUnit) unit);
+            else actionUsed = UnitAttack.attack((Unit) unit);
+            if(!actionUsed) UnitMovement.movement((Unit) unit);
+        }
+
+        for(Object unit : CurrentGameData.southFraction.getUnitList()) {
             boolean actionUsed = false;
             if(unit.getClass().equals(SpecialUnit.class)) actionUsed = UnitSkillUsage.attemptUsingASkill((SpecialUnit) unit);
             else actionUsed = UnitAttack.attack((Unit) unit);

@@ -14,8 +14,10 @@ public class UnitMovement {
         }
         int x = currentlyMoving.getPositionX();
         int y = currentlyMoving.getPositionY();
-        while(staminaLeft > 0) {
+        int distance = currentlyMoving.getRange() - originalRange;
+        while(staminaLeft > 0 && distance != 0) {
             staminaLeft--;
+            distance--;
             if(Math.abs(x - closestTarget.getPositionX()) > Math.abs(y - closestTarget.getPositionY())) {
                 if(x - closestTarget.getPositionX() > 1) x--;
                 else {
