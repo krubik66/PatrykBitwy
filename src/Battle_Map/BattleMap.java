@@ -1,12 +1,14 @@
 package Battle_Map;
 
 import Fractions.Units.Unit;
+import settings.Settings;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class BattleMap {
 
-    Title[][] map;
+    Tile[][] map;
 
 
     int occupiedPlacesSide1;
@@ -16,18 +18,18 @@ public class BattleMap {
 
     public BattleMap(int size) {
 
-        map = new Title[size][size];
+        map = new Tile[size][size];
 
         occupiedPlacesSide1 = 0;
         occupiedPlacesSide2 = 0;
         maxCapacity = size * size / 5;
-
+        CREATETHISWORLD();
     }
 
-    public boolean generateUnits(Unit[] units, boolean onOppositeSide) {
+    public boolean generateUnits(ArrayList<Unit> units, boolean fromNorth) {
         int size = map.length;
-        if (!onOppositeSide) {
-            if (units.length + occupiedPlacesSide1 > maxCapacity) return false;
+        if (!fromNorth) {
+            if (units.size() + occupiedPlacesSide1 > maxCapacity) return false;
             for (Unit u : units) {
                 int n = occupiedPlacesSide1 / size;
                 Random random = new Random();
@@ -42,10 +44,10 @@ public class BattleMap {
                     }
                 }
             }
-        } else if (units.length + occupiedPlacesSide2 > maxCapacity) return false;
+        } else if (units.size() + occupiedPlacesSide2 > maxCapacity) return false;
         else {
             for (Unit u : units) {
-                int n = size - occupiedPlacesSide2 / size;
+                int n = size - 1 - occupiedPlacesSide2 / size;
                 Random random = new Random();
                 while (true) {
                     int i = random.nextInt(size);
@@ -64,9 +66,17 @@ public class BattleMap {
 
     public void generateTerrain(int biome) {
         RandomTerrain random = new RandomTerrain();
-        for (Title[] row: map) {
-            for (Title title : row) {
+        for (Tile[] row: map) {
+            for (Tile title : row) {
                 title.setTerrain(random.nextTerrain());
+            }
+        }
+    }
+
+    private void CREATETHISWORLD() {
+        for(int i = 0; i < Settings.mapSize; i++) {
+            for(int j = 0; j < Settings.mapSize; j++) {
+                map[i][j] = new Tile();
             }
         }
     }
@@ -102,6 +112,17 @@ public class BattleMap {
                 stringBuilders[i*3+2].append(toAppend[2]);
             }
         }
+    }
+
+    public void print() {
+        System.out.println("------------------------------------------------");
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map.length; j++) {
+                map[i][j].showYourself();
+            }
+            System.out.println();
+        }
+        System.out.println("------------------------------------------------");
     }
 
     public void move(Unit unit, int x, int y) {

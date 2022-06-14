@@ -1,6 +1,6 @@
 package Fractions;
 
-import Battle_Map.Title;
+import Battle_Map.Tile;
 import Fractions.Units.MeleeUnit;
 import Fractions.Units.RangeUnit;
 import Fractions.Units.SpecialUnit;
@@ -32,7 +32,7 @@ public class Undead extends Fraction {
         return vampire;
     }
 
-    public void passive(Title title) {
+    public void passive(Tile title) {
         if(title.getDeadBodies() >= Settings.bodiesRequiredToResurrect && title.getUnit() == null) {
             title.setDeadBodies(0);
             MeleeUnit zombie = Settings.Zombie();

@@ -1,54 +1,53 @@
 package Simulation;
 
-import Fractions.Elves;
-import Fractions.Humans;
-import Fractions.Orcs;
-import Fractions.Undead;
+import Fractions.*;
 import Fractions.Units.SpecialUnit;
 import Fractions.Units.Unit;
 import settings.CurrentGameData;
 import settings.Settings;
 
 public class Symulation {
+    public Fraction northernFraction;
+    public Fraction southernFraction;
     public Symulation(int north, int south) {
         switch (north) {
             case 1:
-                CurrentGameData.northFraction = new Humans(true);
+                this.northernFraction = new Humans(true);
                 break;
             case 2:
-                CurrentGameData.northFraction = new Undead(true);
+                this.northernFraction = new Undead(true);
                 break;
             case 3:
-                CurrentGameData.northFraction = new Elves(true);
+                this.northernFraction = new Elves(true);
                 break;
             case 4:
-                CurrentGameData.northFraction = new Orcs(true);
+                this.northernFraction = new Orcs(true);
                 break;
         }
         switch (south) {
             case 1:
-                CurrentGameData.northFraction = new Humans(false);
+                this.southernFraction = new Humans(false);
                 break;
             case 2:
-                CurrentGameData.northFraction = new Undead(false);
+                this.southernFraction = new Undead(false);
                 break;
             case 3:
-                CurrentGameData.northFraction = new Elves(false);
+                this.southernFraction = new Elves(false);
                 break;
             case 4:
-                CurrentGameData.northFraction = new Orcs(false);
+                this.southernFraction = new Orcs(false);
                 break;
         }
     }
-    public static void turn() {
-        for(Object unit : CurrentGameData.northFraction.getUnitList()) {
+    public void turn() {
+        for(Object unit : northernFraction.getUnitList()) {
             boolean actionUsed = false;
             if(unit.getClass().equals(SpecialUnit.class)) actionUsed = UnitSkillUsage.attemptUsingASkill((SpecialUnit) unit);
             else actionUsed = UnitAttack.attack((Unit) unit);
             if(!actionUsed) UnitMovement.movement((Unit) unit);
         }
 
-        for(Object unit : CurrentGameData.southFraction.getUnitList()) {
+        for(Object unit : southernFraction.getUnitList()) {
             boolean actionUsed = false;
             if(unit.getClass().equals(SpecialUnit.class)) actionUsed = UnitSkillUsage.attemptUsingASkill((SpecialUnit) unit);
             else actionUsed = UnitAttack.attack((Unit) unit);

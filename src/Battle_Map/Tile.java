@@ -2,7 +2,7 @@ package Battle_Map;
 
 import Fractions.Units.Unit;
 
-public class Title {
+public class Tile {
     private Terrain terrain;
     private Unit unit;
 
@@ -14,6 +14,13 @@ public class Title {
 
     public int getDeadBodies() {
         return deadBodies;
+    }
+
+    public void showYourself() {
+        if(unit != null) {
+            System.out.print(unit.icon);
+        }
+        else System.out.print(" ");
     }
 
     public void setDeadBodies(int deadBodies) {

@@ -13,13 +13,16 @@ public abstract class Unit {
     private boolean isPoisoned;
     private Fraction allegience;
 
-    public Unit(int hp, int dmg, int speed) {
+    public final String icon;
+
+    public Unit(int hp, int dmg, int speed, String icon) {
         this.hp = hp;
         this.maxHP = hp;
         this.dmg = dmg;
         this.speed = speed;
         this.range = -1;
         this.isPoisoned = false;
+        this.icon = icon;
     }
 
     public void poison() {
