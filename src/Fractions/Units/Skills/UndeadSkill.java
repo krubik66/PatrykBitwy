@@ -1,6 +1,5 @@
 package Fractions.Units.Skills;
 
-import Fractions.Fraction;
 import Fractions.Units.MeleeUnit;
 import Fractions.Units.Unit;
 import Simulation.UnitAttack;
@@ -12,8 +11,8 @@ public class UndeadSkill implements Skill {
         Unit target = UnitAttack.findTarget(caster, false);
         if(target != null && target.getHp() < Settings.HP / 4) {
             MeleeUnit zombie = Settings.Zombie();
-            zombie.setAllegience(caster.getAllegience());
-            caster.getAllegience().getUnitList().add(zombie);
+            zombie.setAlliance(caster.getAlliance());
+            caster.getAlliance().getUnitList().add(zombie);
             zombie.setPositionX(target.getPositionX());
             zombie.setPositionY(target.getPositionY());
             target = zombie;

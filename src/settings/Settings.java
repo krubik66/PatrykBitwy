@@ -20,7 +20,7 @@ public class Settings {
     public static int HP = 20;
     public static int meleeSpeed = 3;
     public static int rangeSpeed = 1;
-    public static int range = 10;
+    public static int range = 3;
     public static int DMG = 4;
 
     // ------------------------------------------------

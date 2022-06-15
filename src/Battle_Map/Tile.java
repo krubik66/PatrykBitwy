@@ -16,13 +16,6 @@ public class Tile {
         return deadBodies;
     }
 
-    public void showYourself() {
-        if(unit != null) {
-            System.out.print(unit.icon);
-        }
-        else System.out.print(" ");
-    }
-
     public void setDeadBodies(int deadBodies) {
         this.deadBodies = deadBodies;
     }

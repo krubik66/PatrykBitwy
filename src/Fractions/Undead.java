@@ -13,21 +13,21 @@ public class Undead extends Fraction {
 
     public MeleeUnit addMelee() {
         MeleeUnit zombie = Settings.Zombie();
-        zombie.setAllegience(this);
+        zombie.setAlliance(this);
         unitList.add(zombie);
         return zombie;
     }
 
     public RangeUnit addRange() {
         RangeUnit skeletonArcher = Settings.SkeletonArcher();
-        skeletonArcher.setAllegience(this);
+        skeletonArcher.setAlliance(this);
         unitList.add(skeletonArcher);
         return skeletonArcher;
     }
 
     public SpecialUnit addSpecial() {
         SpecialUnit vampire = Settings.Vampire();
-        vampire.setAllegience(this);
+        vampire.setAlliance(this);
         unitList.add(vampire);
         return vampire;
     }
@@ -36,7 +36,7 @@ public class Undead extends Fraction {
         if(title.getDeadBodies() >= Settings.bodiesRequiredToResurrect && title.getUnit() == null) {
             title.setDeadBodies(0);
             MeleeUnit zombie = Settings.Zombie();
-            zombie.setAllegience(this);
+            zombie.setAlliance(this);
             unitList.add(zombie);
             title.setUnit(zombie);
         }

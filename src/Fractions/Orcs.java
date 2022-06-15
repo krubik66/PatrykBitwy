@@ -13,7 +13,7 @@ public class Orcs extends Fraction {
     @Override
     public MeleeUnit addMelee() {
         MeleeUnit grunt = Settings.Grunt();
-        grunt.setAllegience(this);
+        grunt.setAlliance(this);
         unitList.add(grunt);
         return grunt;
     }
@@ -21,7 +21,7 @@ public class Orcs extends Fraction {
     @Override
     public RangeUnit addRange() {
         RangeUnit hunter = Settings.Hunter();
-        hunter.setAllegience(this);
+        hunter.setAlliance(this);
         unitList.add(hunter);
         return hunter;
     }
@@ -29,7 +29,7 @@ public class Orcs extends Fraction {
     @Override
     public SpecialUnit addSpecial() {
         SpecialUnit shaman = Settings.Shaman();
-        shaman.setAllegience(this);
+        shaman.setAlliance(this);
         unitList.add(shaman);
         return shaman;
     }

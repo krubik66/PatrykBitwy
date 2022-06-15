@@ -3,13 +3,7 @@ package GUI;
 import Fractions.Units.Unit;
 import settings.CurrentGameData;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.plaf.IconUIResource;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class MapPanel extends JPanel {
 
@@ -18,8 +12,8 @@ public class MapPanel extends JPanel {
     private final JLabel[][] side;
 
     ImageIcon tile_neutral = new ImageIcon("tile.png");
-    ImageIcon tile_side_1 = new ImageIcon("tile_side1.1.png");
-    ImageIcon tile_side_2 = new ImageIcon("tile_side2.2.png");
+    ImageIcon tile_side_1 = new ImageIcon("tile_side1.png");
+    ImageIcon tile_side_2 = new ImageIcon("tile_side2.png");
 
     ImageIcon melee = new ImageIcon("melee_unit.png");
 
@@ -38,12 +32,12 @@ public class MapPanel extends JPanel {
         side = new JLabel[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                ImageIcon imageIcon1 = empty;
+                ImageIcon imageIcon1 = tile_neutral;
 
                 units[i][j] = new JLabel(imageIcon1, JLabel.CENTER);
                 units[i][j].setBounds(100 + imageIcon1.getIconWidth() / 2 * (i + j), 500 + imageIcon1.getIconHeight() / 2 * (i - j), imageIcon1.getIconWidth(), imageIcon1.getIconHeight());
                 add(units[i][j]);
-                ImageIcon imageIcon2 = empty;
+                ImageIcon imageIcon2 = tile_neutral;
 
                 side[i][j] = new JLabel(imageIcon2, JLabel.CENTER);
                 side[i][j].setBounds(100 + imageIcon2.getIconWidth() / 2 * (i + j), 500 + imageIcon2.getIconHeight() / 2 * (i - j), imageIcon2.getIconWidth(), imageIcon2.getIconHeight());
@@ -62,20 +56,21 @@ public class MapPanel extends JPanel {
     public void refresh() {
         for (int i = 0; i < units.length; i++) {
             for (int j = 0; j < units.length; j++) {
-                Unit unit = CurrentGameData.battleMap.getUnit(i,j);
+                Unit unit = CurrentGameData.battleMap.getUnit(j,i);
                 if (unit != null) {
+                    System.out.println(unit.getPositionX());
                     ImageIcon imageIcon1 = unit.imageIcon;
 
                     units[i][j].setIcon(imageIcon1);
 
                     ImageIcon imageIcon2;
-                    if (unit.getAllegience().isFromNorth()) imageIcon2 = tile_side_2;
-                    else imageIcon2 = tile_side_1;
+                    if (unit.getAlliance().isFromNorth()) imageIcon2 = tile_side_1;
+                    else imageIcon2 = tile_side_2;
 
                     side[i][j].setIcon(imageIcon2);
                 } else {
-                    units[i][j].setIcon(empty);
-                    side[i][j].setIcon(empty);
+                    //units[i][j].setIcon(empty);
+                    //side[i][j].setIcon(empty);
                 }
             }
         }

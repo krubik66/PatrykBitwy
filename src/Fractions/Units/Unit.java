@@ -2,10 +2,7 @@ package Fractions.Units;
 import Fractions.Fraction;
 import settings.Settings;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 
 public abstract class Unit {
     private int hp;
@@ -16,7 +13,7 @@ public abstract class Unit {
     private int positionX;
     private int positionY;
     private boolean isPoisoned;
-    private Fraction allegience;
+    private Fraction alliance;
 
     public final String icon;
 
@@ -50,12 +47,12 @@ public abstract class Unit {
         this.maxHP = maxHP;
     }
 
-    public Fraction getAllegience() {
-        return allegience;
+    public Fraction getAlliance() {
+        return alliance;
     }
 
-    public void setAllegience(Fraction allegience) {
-        this.allegience = allegience;
+    public void setAlliance(Fraction alliance) {
+        this.alliance = alliance;
     }
 
     public int getRange() {

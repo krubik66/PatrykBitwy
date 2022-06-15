@@ -13,7 +13,7 @@ public class UnitAttack {
             for (int y = caster.getPositionY() - range; y < caster.getPositionY() + range; y++) {
                 if(x >= 0 && x < Settings.mapSize && y >= 0 && y < Settings.mapSize) {
                     Unit currentUnit = CurrentGameData.battleMap.getUnit(x, y);
-                    if (currentUnit != null && currentUnit.getAllegience().equals(caster.getAllegience()) == friendly) {
+                    if (currentUnit != null && currentUnit.getAlliance().equals(caster.getAlliance()) == friendly) {
                         return currentUnit;
                     }
                 }
@@ -29,7 +29,7 @@ public class UnitAttack {
             for (int y = caster.getPositionY() - range; y < caster.getPositionY() + range; y++) {
                 if(x >= 0 && x < Settings.mapSize && y >= 0 && y < Settings.mapSize) {
                     Unit currentUnit = CurrentGameData.battleMap.getUnit(x, y);
-                    if (currentUnit != null && currentUnit.getAllegience().equals(caster.getAllegience()) == friendly) {
+                    if (currentUnit != null && currentUnit.getAlliance().equals(caster.getAlliance()) == friendly) {
                         targets.add(currentUnit);
                     }
                 }
@@ -43,7 +43,7 @@ public class UnitAttack {
         if(target != null) {
             target.setHp(target.getHp() - attacker.getDmg());
             if(target.getHp() <= 0) {
-                target.getAllegience().unitDied(target);
+                target.getAlliance().unitDied(target);
                 int x = target.getPositionX();
                 int y = target.getPositionY();
                 CurrentGameData.battleMap.unitDied(x, y);

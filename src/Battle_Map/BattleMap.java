@@ -118,7 +118,9 @@ public class BattleMap {
         System.out.println("------------------------------------------------");
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map.length; j++) {
-                map[i][j].showYourself();
+                Unit unit = getUnit(i,j);
+                if (unit!= null) System.out.print(unit.icon);
+                else System.out.print(" ");
             }
             System.out.println();
         }

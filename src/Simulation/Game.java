@@ -79,8 +79,7 @@ public class Game {
         for(int i = 0; i < specialAmount; i++) {
             fraction.addSpecial();
         }
-        CurrentGameData.battleMap.generateUnits(fraction.getUnitList(), isNorth);
-        return !fraction.getUnitList().isEmpty();
+        return !CurrentGameData.battleMap.generateUnits(fraction.getUnitList(), isNorth);
     }
 
     private static boolean again() {
@@ -117,6 +116,7 @@ public class Game {
         fakeFill(currentSimulation.southernFraction, false);
         while(currentSimulation.northernFraction.getUnitList().size() != 0 || currentSimulation.southernFraction.getUnitList().size() != 0) {
             currentSimulation.turn();
+            panel2.refresh();
             CurrentGameData.battleMap.print();
         }
         System.out.println("");

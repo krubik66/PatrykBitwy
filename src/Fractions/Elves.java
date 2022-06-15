@@ -14,7 +14,7 @@ public class Elves extends Fraction {
     @Override
     public MeleeUnit addMelee() {
         MeleeUnit bladedancer = Settings.Bladedancer();
-        bladedancer.setAllegience(this);
+        bladedancer.setAlliance(this);
         unitList.add(bladedancer);
         return bladedancer;
     }
@@ -22,7 +22,7 @@ public class Elves extends Fraction {
     @Override
     public RangeUnit addRange() {
         RangeUnit bloodmage = Settings.Bloodmage();
-        bloodmage.setAllegience(this);
+        bloodmage.setAlliance(this);
         unitList.add(bloodmage);
         return bloodmage;
     }
@@ -30,7 +30,7 @@ public class Elves extends Fraction {
     @Override
     public SpecialUnit addSpecial() {
         SpecialUnit portal = Settings.Portal();
-        portal.setAllegience(this);
+        portal.setAlliance(this);
         unitList.add(portal);
         return portal;
     }

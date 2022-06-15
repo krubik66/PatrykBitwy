@@ -13,7 +13,7 @@ public class Humans extends Fraction {
     @Override
     public MeleeUnit addMelee() {
         MeleeUnit paladin = Settings.Paladin();
-        paladin.setAllegience(this);
+        paladin.setAlliance(this);
         unitList.add(paladin);
         return paladin;
     }
@@ -21,7 +21,7 @@ public class Humans extends Fraction {
     @Override
     public RangeUnit addRange() {
         RangeUnit marksman = Settings.Marksman();
-        marksman.setAllegience(this);
+        marksman.setAlliance(this);
         unitList.add(marksman);
         return marksman;
     }
@@ -29,7 +29,7 @@ public class Humans extends Fraction {
     @Override
     public SpecialUnit addSpecial() {
         SpecialUnit priest = Settings.Priest();
-        priest.setAllegience(this);
+        priest.setAlliance(this);
         unitList.add(priest);
         return priest;
     }
