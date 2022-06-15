@@ -71,9 +71,8 @@ public class MapPanel extends JPanel {
                 } else if (i % 2 == 0) imageIcon1 = axe;
                 else imageIcon1 = range;
 
-                units[i][j] = new JLabel(imageIcon1, JLabel.CENTER);
-                units[i][j].setBounds(100 + imageIcon1.getIconWidth() / 2 * (i + j), 500 + imageIcon1.getIconHeight() / 2 * (i - j), imageIcon1.getIconWidth(), imageIcon1.getIconHeight());
-                add(units[i][j]);
+                units[i][j].setIcon(imageIcon1);
+
                 ImageIcon imageIcon2;
                 if (j % 2 == 0) {
                     if (i % 2 == 1) imageIcon2 = tile_side_1;
@@ -81,9 +80,7 @@ public class MapPanel extends JPanel {
                 } else if (i % 2 == 0) imageIcon2 = tile_side_1;
                 else imageIcon2 = tile_side_2;
 
-                side[i][j] = new JLabel(imageIcon2, JLabel.CENTER);
-                side[i][j].setBounds(100 + imageIcon2.getIconWidth() / 2 * (i + j), 500 + imageIcon2.getIconHeight() / 2 * (i - j), imageIcon2.getIconWidth(), imageIcon2.getIconHeight());
-                add(side[i][j]);
+                side[i][j].setIcon(imageIcon2);
             }
         }
     }
