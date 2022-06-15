@@ -2,16 +2,40 @@ package Simulation;
 
 import Battle_Map.BattleMap;
 import Fractions.Fraction;
+import GUI.MapPanel;
+import GUI.MyPanel;
+import GUI.MyPanel2;
 import settings.CurrentGameData;
 import settings.Settings;
 
+import javax.swing.*;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Game {
     private boolean willToPlay = true;
     public Game() {
-       while (willToPlay) this.willToPlay = fakeGame();
+
+        JFrame frame = new JFrame("My plane");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setUndecorated(true);
+        JPanel panel1;
+        JPanel panel2;
+        int a = Settings.mapSize;
+        try {
+            panel1 = new MyPanel("Picture.jpeg");
+            panel2 = new MapPanel(a);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        JPanel panel = new MyPanel2(panel1,panel2);
+        frame.getContentPane().add(panel);
+        frame.setVisible(true);
+
+
+        while (willToPlay) this.willToPlay = fakeGame();
     }
 
     private static Symulation choosingFractions() {

@@ -2,6 +2,11 @@ package Fractions.Units;
 import Fractions.Fraction;
 import settings.Settings;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+
 public abstract class Unit {
     private int hp;
     private int maxHP;
@@ -15,6 +20,8 @@ public abstract class Unit {
 
     public final String icon;
 
+    public final ImageIcon imageIcon;
+
     public Unit(int hp, int dmg, int speed, String icon) {
         this.hp = hp;
         this.maxHP = hp;
@@ -23,6 +30,8 @@ public abstract class Unit {
         this.range = -1;
         this.isPoisoned = false;
         this.icon = icon;
+        imageIcon = new ImageIcon(icon);
+
     }
 
     public void poison() {

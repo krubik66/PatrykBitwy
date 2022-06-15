@@ -11,7 +11,7 @@ import Fractions.Units.SpecialUnit;
 
 public class Settings {
     // game settings
-    public static int mapSize = 100;
+    public static int mapSize = 20;
 
 
     // ------------------------------------------------
