@@ -7,7 +7,7 @@ public class SpecialUnit extends Unit {
     private int skillCD;
     private int remainingCD = 0;
     public SpecialUnit(int hp, int dmg, int speed, int range, Skill skill, int skillCD) {
-        super(hp, dmg, speed, "&");
+        super(hp, dmg, speed, "special_unit.png");
         setRange(range);
         this.skill = skill;
         this.skillCD = skillCD;

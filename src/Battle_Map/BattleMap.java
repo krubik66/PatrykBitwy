@@ -23,7 +23,7 @@ public class BattleMap {
         occupiedPlacesSide1 = 0;
         occupiedPlacesSide2 = 0;
         maxCapacity = size * size / 5;
-        CREATETHISWORLD();
+        Create();
     }
 
     public boolean generateUnits(ArrayList<Unit> units, boolean fromNorth) {
@@ -73,7 +73,7 @@ public class BattleMap {
         }
     }
 
-    private void CREATETHISWORLD() {
+    private void Create() {
         for(int i = 0; i < Settings.mapSize; i++) {
             for(int j = 0; j < Settings.mapSize; j++) {
                 map[i][j] = new Tile();
