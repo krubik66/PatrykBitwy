@@ -101,6 +101,7 @@ public class Game {
         fillThoseRanks(currentSimulation.northernFraction, true);
         System.out.println("Create southern army");
         fillThoseRanks(currentSimulation.southernFraction, false);
+        panel2.refresh();
         while(currentSimulation.northernFraction.getUnitList().size() != 0 && currentSimulation.southernFraction.getUnitList().size() != 0) {
             currentSimulation.turn();
             panel2.refresh();
