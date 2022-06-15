@@ -27,4 +27,8 @@ public abstract class Fraction {
     public void unitDied(Unit unit) {
         unitList.remove(unit);
     }
+
+    public boolean isFromNorth() {
+        return isFromNorth;
+    }
 }

@@ -1,5 +1,8 @@
 package GUI;
 
+import Fractions.Units.Unit;
+import settings.CurrentGameData;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.IconUIResource;
@@ -64,24 +67,19 @@ public class MapPanel extends JPanel {
     public void refresh() {
         for (int i = 0; i < units.length; i++) {
             for (int j = 0; j < units.length; j++) {
-                ImageIcon imageIcon1;
-                if (j % 2 == 0) {
-                    if (i % 4 == 1) imageIcon1 = special;
-                    else imageIcon1 = melee;
-                } else if (i % 2 == 0) imageIcon1 = axe;
-                else imageIcon1 = range;
+                Unit unit = CurrentGameData.battleMap.getUnit(i,j);
+                ImageIcon imageIcon1 = unit.imageIcon;
 
                 units[i][j].setIcon(imageIcon1);
 
                 ImageIcon imageIcon2;
-                if (j % 2 == 0) {
-                    if (i % 2 == 1) imageIcon2 = tile_side_1;
-                    else imageIcon2 = tile_side_2;
-                } else if (i % 2 == 0) imageIcon2 = tile_side_1;
-                else imageIcon2 = tile_side_2;
+                if (unit.getAllegience().isFromNorth()) imageIcon2 = tile_side_2;
+                else imageIcon2 = tile_side_1;
 
                 side[i][j].setIcon(imageIcon2);
             }
         }
+        repaint();
+        revalidate();
     }
 }

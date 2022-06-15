@@ -3,13 +3,11 @@ package Simulation;
 import Fractions.*;
 import Fractions.Units.SpecialUnit;
 import Fractions.Units.Unit;
-import settings.CurrentGameData;
-import settings.Settings;
 
-public class Symulation {
+public class Simulation {
     public Fraction northernFraction;
     public Fraction southernFraction;
-    public Symulation(int north, int south) {
+    public Simulation(int north, int south) {
         switch (north) {
             case 1:
                 this.northernFraction = new Humans(true);

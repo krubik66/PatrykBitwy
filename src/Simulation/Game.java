@@ -11,18 +11,19 @@ import settings.Settings;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Game {
     private boolean willToPlay = true;
+
+    private JFrame frame;
+    private MyPanel panel1;
+    private MapPanel panel2;
     public Game() {
 
-        JFrame frame = new JFrame("My plane");
+        frame = new JFrame("My plane");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
-        JPanel panel1;
-        JPanel panel2;
         int a = Settings.mapSize;
         try {
             panel1 = new MyPanel("Picture.jpeg");
@@ -38,7 +39,7 @@ public class Game {
         while (willToPlay) this.willToPlay = fakeGame();
     }
 
-    private static Symulation choosingFractions() {
+    private static Simulation choosingFractions() {
         int north = fractionsInt(true);
         while(north < 1 || north > 4) {
             System.out.println("You choosed poorly");
@@ -49,7 +50,7 @@ public class Game {
             System.out.println("You choosed poorly");
             south = fractionsInt(false);
         }
-        return new Symulation(north, south);
+        return new Simulation(north, south);
     }
 
     private static int fractionsInt(boolean isItNorth) {
@@ -95,13 +96,14 @@ public class Game {
 
     public boolean startGame() {
         reset();
-        Symulation currentSymulation = choosingFractions();
+        Simulation currentSimulation = choosingFractions();
         System.out.println("Create northern army");
-        fillThoseRanks(currentSymulation.northernFraction, true);
+        fillThoseRanks(currentSimulation.northernFraction, true);
         System.out.println("Create southern army");
-        fillThoseRanks(currentSymulation.southernFraction, false);
-        while(currentSymulation.northernFraction.getUnitList().size() != 0 || currentSymulation.southernFraction.getUnitList().size() != 0) {
-            currentSymulation.turn();
+        fillThoseRanks(currentSimulation.southernFraction, false);
+        while(currentSimulation.northernFraction.getUnitList().size() != 0 && currentSimulation.southernFraction.getUnitList().size() != 0) {
+            currentSimulation.turn();
+            panel2.refresh();
             CurrentGameData.battleMap.print();
         }
         return again();
@@ -109,11 +111,11 @@ public class Game {
 
     public boolean fakeGame() {
         reset();
-        Symulation currentSymulation = choosingFractions();
-        fakeFill(currentSymulation.northernFraction, true);
-        fakeFill(currentSymulation.southernFraction, false);
-        while(currentSymulation.northernFraction.getUnitList().size() != 0 || currentSymulation.southernFraction.getUnitList().size() != 0) {
-            currentSymulation.turn();
+        Simulation currentSimulation = choosingFractions();
+        fakeFill(currentSimulation.northernFraction, true);
+        fakeFill(currentSimulation.southernFraction, false);
+        while(currentSimulation.northernFraction.getUnitList().size() != 0 || currentSimulation.southernFraction.getUnitList().size() != 0) {
+            currentSimulation.turn();
             CurrentGameData.battleMap.print();
         }
         System.out.println("");
@@ -121,7 +123,8 @@ public class Game {
     }
 
     private void reset() {
-        CurrentGameData.battleMap = new BattleMap(Settings.mapSize);;
+        CurrentGameData.battleMap = new BattleMap(Settings.mapSize);
+        panel2.refresh();
     }
 
     private boolean fakeFill(Fraction fraction, boolean isNorth) {

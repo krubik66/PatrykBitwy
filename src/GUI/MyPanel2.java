@@ -51,4 +51,5 @@ public class MyPanel2 extends JPanel implements ActionListener {
         this.repaint();
 
     }
+
 }
