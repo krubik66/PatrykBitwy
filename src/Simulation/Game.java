@@ -3,7 +3,7 @@ package Simulation;
 import Battle_Map.BattleMap;
 import Fractions.Fraction;
 import GUI.MapPanel;
-import GUI.MyPanel;
+import GUI.ChoosingFractionsPanel;
 import GUI.MyPanel2;
 import settings.CurrentGameData;
 import settings.Settings;
@@ -16,7 +16,7 @@ public class Game {
     private boolean willToPlay = true;
 
     private JFrame frame;
-    private MyPanel panel1;
+    private ChoosingFractionsPanel panel1;
     private MapPanel panel2;
     public Game() {
 
@@ -26,7 +26,7 @@ public class Game {
         frame.setUndecorated(true);
         int a = Settings.mapSize;
         try {
-            panel1 = new MyPanel("Picture.jpeg");
+            panel1 = new ChoosingFractionsPanel("Picture.jpeg");
             panel2 = new MapPanel(a);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -39,16 +39,29 @@ public class Game {
         while (willToPlay) this.willToPlay = fakeGame();
     }
 
-    private static Simulation choosingFractions() {
-        int north = fractionsInt(true);
+    private Simulation choosingFractions() {
+        //int north = fractionsInt(true);
+        while (!CurrentGameData.hasStarted) {
+            synchronized (this) {
+                try {
+                    wait(1);
+                } catch (InterruptedException e) {
+                    System.out.println("Dont interrupt");
+                }
+            }
+        }
+        int north = CurrentGameData.attackingFractionNumber;
         while(north < 1 || north > 4) {
             System.out.println("You choosed poorly");
-            north = fractionsInt(true);
+            //north = fractionsInt(true);
+            north = CurrentGameData.attackingFractionNumber;
         }
-        int south = fractionsInt(false);
+        //int south = fractionsInt(false);
+        int south = CurrentGameData.defendingFractionNumber;
         while(south < 1 || south > 4) {
             System.out.println("You choosed poorly");
-            south = fractionsInt(false);
+            //south = fractionsInt(false);
+            south = CurrentGameData.attackingFractionNumber;
         }
         return new Simulation(north, south);
     }
@@ -105,6 +118,11 @@ public class Game {
             currentSimulation.turn();
             panel2.refresh();
             CurrentGameData.battleMap.print();
+            try {
+                wait(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Dont interrupt");
+            }
         }
         return again();
     }
@@ -115,9 +133,27 @@ public class Game {
         fakeFill(currentSimulation.northernFraction, true);
         fakeFill(currentSimulation.southernFraction, false);
         while(currentSimulation.northernFraction.getUnitList().size() != 0 || currentSimulation.southernFraction.getUnitList().size() != 0) {
-            currentSimulation.turn();
-            panel2.refresh();
-            CurrentGameData.battleMap.print();
+            if(CurrentGameData.isCurrentlyOngoing) {
+                currentSimulation.turn();
+                panel2.refresh();
+                CurrentGameData.battleMap.print();
+                synchronized (this) {
+                    try {
+                        wait(1000);
+                    } catch (InterruptedException e) {
+                        System.out.println("Dont interrupt");
+                    }
+                }
+            }
+            else {
+                synchronized (this) {
+                    try {
+                        wait(1000);
+                    } catch (InterruptedException e) {
+                        System.out.println("Dont interrupt");
+                    }
+                }
+            }
         }
         System.out.println("");
         return again();

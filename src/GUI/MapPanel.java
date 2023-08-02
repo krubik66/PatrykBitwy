@@ -58,7 +58,7 @@ public class MapPanel extends JPanel {
             for (int j = 0; j < units.length; j++) {
                 Unit unit = CurrentGameData.battleMap.getUnit(j,i);
                 if (unit != null) {
-                    System.out.println(unit.getPositionX());
+                    //System.out.println(unit.getPositionX());
                     ImageIcon imageIcon1 = unit.imageIcon;
 
                     units[i][j].setIcon(imageIcon1);
@@ -69,8 +69,8 @@ public class MapPanel extends JPanel {
 
                     side[i][j].setIcon(imageIcon2);
                 } else {
-                    //units[i][j].setIcon(empty);
-                    //side[i][j].setIcon(empty);
+                    units[i][j].setIcon(tile_neutral);
+                    side[i][j].setIcon(tile_neutral);
                 }
             }
         }

@@ -1,32 +1,34 @@
 package GUI;
 
+import settings.CurrentGameData;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MyPanel2 extends JPanel implements ActionListener {
-    private JPanel panel1;
-    private JButton jButton;
-    private JPanel panel2;
+    private ChoosingFractionsPanel fractionsPanel;
+    private JButton startButton;
+    private MapPanel warPanel;
 
     boolean isFirstOn;
 
-    public MyPanel2(JPanel panel1, JPanel panel2) {
+    public MyPanel2(ChoosingFractionsPanel fractionsPanel, MapPanel warPanel) {
         //construct components
-        this.panel1 = panel1;
-        this.panel2 = panel2;
+        this.fractionsPanel = fractionsPanel;
+        this.warPanel = warPanel;
         isFirstOn = true;
         setLayout(null);
 
-        jButton = new JButton("Start");
-        jButton.addActionListener(this);
-        add(jButton);
-        add(this.panel1);
-        jButton.setFont(new Font("Comic Sans MS",Font.PLAIN,32));
-        this.panel1.setBounds(0,0,2000,1000);
-        this.panel2.setBounds(0,0,2000,1000);
-        jButton.setBounds(900,0,200,40);
+        startButton = new JButton("Start");
+        startButton.addActionListener(this);
+        add(startButton);
+        add(this.fractionsPanel);
+        startButton.setFont(new Font("Comic Sans MS",Font.PLAIN,32));
+        this.fractionsPanel.setBounds(0,0,2000,1000);
+        this.warPanel.setBounds(0,0,2000,1000);
+        startButton.setBounds(900,0,200,40);
         this.revalidate();
         this.repaint();
 
@@ -38,14 +40,22 @@ public class MyPanel2 extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (isFirstOn) {
-            remove(panel1);
-            add(panel2);
-            jButton.setBounds(900,0,200,40);
+            synchronized (this) {
+                remove(fractionsPanel);
+                add(warPanel);
+                startButton.setBounds(900, 0, 200, 40);
+                CurrentGameData.isCurrentlyOngoing = true;
+                CurrentGameData.hasStarted = true;
+                fractionsPanel.saveComboBoxes();
+                notifyAll();
+            }
         } else {
-            remove(panel2);
-            add(panel1);
-            jButton.setBounds(900,0,200,40);
+            remove(warPanel);
+            add(fractionsPanel);
+            startButton.setBounds(900,0,200,40);
+            CurrentGameData.isCurrentlyOngoing = false;
         }
+        fractionsPanel.saveComboBoxes();
         isFirstOn ^= true;
         this.revalidate();
         this.repaint();

@@ -72,7 +72,7 @@ public class Settings {
     public static MeleeUnit Zombie() { return new MeleeUnit(HP * 2, DMG / 4, meleeSpeed / 2);}
 
     // SkeletonArcher (range)
-    public static RangeUnit SkeletonArcher() { return new RangeUnit(HP /2 , DMG, meleeSpeed, range);}
+    public static RangeUnit SkeletonArcher() { return new RangeUnit(HP /2 , DMG + 1, meleeSpeed, range);}
 
     // Vampire (special)
     public static SpecialUnit Vampire() { return new SpecialUnit(HP * 10, DMG * 2, meleeSpeed + 5, -1, new UndeadSkill(), 0);}
